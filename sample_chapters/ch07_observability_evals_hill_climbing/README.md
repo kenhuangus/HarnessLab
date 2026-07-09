@@ -6,6 +6,12 @@ Main manuscript:
 
 - [chapter_7_observability_evals_hill_climbing.md](chapter_7_observability_evals_hill_climbing.md)
 
+Publication-format versions:
+
+- [DOCX export](exports/Hill_Climbing_Chapter_7_Observability_Evals_Hill_Climbing.docx)
+- [Native Google Doc](https://docs.google.com/document/d/1qq_ufYCnUlVf4ZvL-1TZhQvH_XYvGFUFDzBGQde9Wts/edit?usp=drivesdk)
+- [Drive DOCX copy](https://docs.google.com/document/d/10j_qjoKwQfaycuRpOcckbzwHMlXFWGfW/edit?usp=drivesdk&ouid=110885662487503905294&rtpof=true&sd=true)
+
 Editable Excalidraw diagrams:
 
 - [Figure 7.1: Secure Harness Observability Spine](figures/figure_7_1_observability_spine.excalidraw)
