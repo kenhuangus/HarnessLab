@@ -95,10 +95,10 @@ def wrap(text: str) -> str:
 
 def root_readme() -> str:
     sections = [
-        "# HarnessLab",
+        "# **HarnessLab**",
         """
-        HarnessLab is the runnable companion project for Hill Climbing: Design Patterns for Securing
-        Long-Horizon Multi-Agent AI Systems. The book argues that the decisive artifact in production
+        HarnessLab is the runnable companion project for **Hill Climbing: Design Patterns for Securing
+        Long-Horizon Multi-Agent AI Systems**. The book argues that the decisive artifact in production
         agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is
         the harness: the control plane that mediates what agents may know, remember, decide, delegate,
         execute, observe, resume, and improve. This repository gives instructors and practitioners a
@@ -207,7 +207,7 @@ def chapter_readme(key: str) -> str:
     meta = CHAPTERS[key]
     control_list = ", ".join(meta["controls"])
     sections = [
-        f"# {key.upper()} - {meta['title']}",
+        f"# **Chapter {int(key[2:])}: {meta['title']}**",
         f"""
         This chapter project teaches {meta['pattern']} through executable code. The scenario begins with
         {meta['failure']}. The lab then applies a compact version of the secure harness pattern and records
@@ -297,26 +297,34 @@ def chapter_readme(key: str) -> str:
 
 
 def ensure_min_words(text: str, subject: str) -> str:
-    addendum = f"""
+    addenda = [
+        f"""
 
-## Teaching Extension Notes
+## Extension Questions
 
-The {subject} lab can be extended in several directions. Ask learners to identify the asset being protected,
-the authority being granted, the evidence being recorded, and the recovery action that remains possible after
-failure. Then ask them to change one variable at a time. If the data class changes, which tool routes should
-fail? If the run resumes after a pause, which credentials, policies, context sources, and memory records must
-be checked again? If an evaluator says the new harness version improved capability, what security regression
-would make that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+The {subject} lab can be extended by asking learners to identify the asset being protected, the authority
+being granted, the evidence being recorded, and the recovery action that remains possible after failure.
+Then ask them to change one variable at a time: data class, run duration, approval state, identity scope,
+context trust, memory promotion, trace retention, runtime policy, fleet pressure, or egress destination.
+Each extension should leave a reviewer with a clear account of what the agent attempted and why the harness
+made the decision it made.
+""",
+        """
 
-The answer should never be simply to trust the model or to block all action. Secure agentic engineering is the
-discipline of preserving useful agency while making the search process bounded. Each extension should leave a
-reviewer with a clear story: what the agent attempted, what the harness knew, what policy applied, what
-decision was made, what evidence was retained, and what recovery path remains. That story is the difference
-between a demo and an operational system.
-"""
-    while count_words(text) < MIN_WORDS:
+## Instructor Review Checklist
+
+Strong submissions should preserve useful agency while making consequential action scoped, justified,
+traced, interruptible, and recoverable. Review whether the student added a realistic unsafe path, whether
+the harness decision is explicit, whether evidence is retained in an artifact, and whether the change can be
+tested without relying on a live vendor service or private credential.
+""",
+    ]
+    for addendum in addenda:
+        if count_words(text) >= MIN_WORDS:
+            break
         text = text.rstrip() + "\n" + wrap(addendum)
+    if count_words(text) < MIN_WORDS:
+        raise ValueError(f"{subject} README template is still below {MIN_WORDS} words after unique addenda")
     return text.rstrip() + "\n"
 
 
@@ -348,4 +356,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

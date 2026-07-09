@@ -1,4 +1,4 @@
-# Chapter 6: Memory
+# **Chapter 6: Memory: State Firewall, Ledger, and Forgetting**
 
 Memory is the point where a long-running agent stops being a stateless text generator and starts becoming an operational system. A memory can be small, such as a user's preferred report format. It can also be powerful, such as a policy shortcut, a known account risk, a remembered tool result, a supervisor instruction, or a summary of previous failures. The important property is not size. The important property is that memory changes future behavior.
 

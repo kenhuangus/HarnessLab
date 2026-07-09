@@ -1,4 +1,4 @@
-# Chapter 7: Observability
+# **Chapter 7: Observability: Traces, Evals, and Hill-Climbing Evidence**
 
 Observability is the part of the secure harness that lets people understand
 what a long-running agent did, why it did it, what evidence supported the
@@ -309,4 +309,3 @@ This is the mindset to carry into production designs. Observability is not just
 what the system prints. It is the governed evidence path that lets teams
 understand, replay, compare, improve, and constrain autonomous behavior over
 time.
-

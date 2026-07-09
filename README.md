@@ -1,205 +1,92 @@
-# HarnessLab
+# **HarnessLab**
 
-HarnessLab is the runnable companion project for Hill Climbing: Design Patterns for Securing
-Long-Horizon Multi-Agent AI Systems. The book argues that the decisive artifact in production
-agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact
-is         the harness: the control plane that mediates what agents may know, remember, decide,
-delegate,         execute, observe, resume, and improve. This repository gives instructors and
-practitioners a         concrete system for teaching that idea. Every chapter has an executable
-lab, a scenario that         demonstrates at least one unsafe path, and a teaching README that
-explains how the pattern works.
+HarnessLab is the private companion lab repository for **Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems**. The book argues that the decisive artifact in production agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is the harness: the control plane that mediates what agents may know, remember, decide, delegate, execute, observe, resume, and improve. This repository turns that argument into runnable code. Each chapter has an executable scenario, a teaching README, and a deterministic result object that records what the harness allowed, blocked, escalated, or preserved as evidence.
 
-The project is deliberately dependency-free. Students can run it with a normal Python 3.11 or
-later         installation, without cloud credentials, vendor accounts, paid model APIs, or live
-secrets. That         choice is pedagogical. A real enterprise harness may integrate identity
-providers, model gateways,         workflow engines, observability backends, vaults, DLP
-services, policy engines, sandbox providers,         CI systems, and ticketing platforms.
-HarnessLab keeps the first learning surface small enough to         inspect. The concepts are
-production-shaped even when the implementation is a deterministic         simulation: task-
-scoped credentials, intent contracts, context quarantine, memory ledgers,         evidence
-envelopes, runtime steering, fleet bulkheads, and data-governance routing.
+The repository is private while the book is in development. It is intended for author review, sample-chapter work, classroom pilots, and controlled workshops before publication. The labs are deliberately dependency-free so that a student can run them with a normal Python installation and no cloud account, no paid model API, no live secrets, and no vendor-specific setup. That constraint is important. A production harness may integrate identity providers, model gateways, workflow engines, observability backends, vaults, DLP services, policy engines, sandboxes, CI systems, and ticketing platforms. HarnessLab keeps the first learning surface small enough to inspect while preserving the control-plane shape that those production systems need.
 
-A central theme is hill climbing. Long-horizon agents rarely move in a straight line from prompt
-to         answer. They search locally over plans, tool calls, context, memory, code changes,
-evaluator         feedback, traces, and recovery states. That search creates value when the
-harness makes it bounded,         observable, reversible, and evidence-driven. The same search
-creates risk when authority expands         silently, when memory carries poisoned instructions
-forward, when traces are too thin to explain a         decision, or when a subagent acts under
-another agent's broad credentials. HarnessLab lets students         run that argument rather
-than only read it.
+## Purpose
 
-The lab is organized as ten chapter projects. Chapter 1 introduces the secure harness as a
-reference         architecture and control/evidence matrix. Chapter 2 turns autonomy into a
-graduated control surface.         Chapter 3 replaces shared credentials with accountable per-
-agent and per-task identity. Chapter 4         treats intent as an authorization boundary.
-Chapter 5 treats context as information-flow and         authority engineering. Chapter 6 treats
-memory as future behavior that needs a state firewall.         Chapter 7 turns observability
-into the evidentiary layer for evals and governed recursive         improvement. Chapter 8 shows
-how to steer a run after it begins. Chapter 9 scales the harness to         fleets without
-cascading failure. Chapter 10 routes data according to classification, egress,
-residency, lineage, and compliance evidence.
+HarnessLab teaches secure harness engineering by making every control concrete. The core package models task-scoped identity, audience-bound credentials, intent contracts, context quarantine, memory ledgers, evidence envelopes, runtime checkpoints, fleet back-pressure, and data-governance routing. These are not final enterprise implementations. They are compact reference forms designed to be read in class, extended in assignments, and mapped to production platforms. The value of the repository is that students can inspect a whole harness pattern in one sitting, then ask how the same pattern would be expressed in a model gateway, policy engine, workflow engine, or platform service.
 
-Run the full suite with `python -m unittest discover -s tests`, run the CLI with `python -m
-harnesslab.cli list`, and run one chapter with `python -m harnesslab.cli run ch07 --json`. The
-command `python scripts/qa.py` runs the tests and checks that every README is long enough to
-support         teaching. Instructors can use the JSON output as an autograding surface, because
-every lab returns a         `LabResult` containing a pass flag, score, policy decisions, and
-artifacts. Practitioners can use         the same output as a pattern checklist for internal
-workshops.
+The labs also teach hill climbing as an engineering discipline. Long-horizon agents rarely move in a straight line from prompt to answer. They search locally over plans, tool calls, code changes, context, memory, evidence, evaluator feedback, and recovery states. That search creates value when the harness makes it bounded, observable, reversible, and evidence-driven. The same search creates risk when authority expands silently, when low-trust context becomes durable memory, when traces are too thin to explain a decision, or when a subagent acts under another agent's broad credentials. HarnessLab makes that tension visible in code.
 
-The code is intentionally small but it is not casual. The core package models a credential
-broker         with audience-bound tokens and revocation, an intent verifier with purpose-bound
-checks, a context         firewall with injection and lethal-trifecta detection, a memory
-firewall with ledger and tombstones,         a tracer with tamper-evident evidence envelopes, a
-runtime controller with checkpoints and policy         overlays, a fleet coordinator with quotas
-and back-pressure, and a data-governance engine with         egress, residency, DLP escalation,
-and lineage. These are not final enterprise implementations.         They are compact reference
-forms designed to be read in class, extended in assignments, and mapped         to production
-systems.
+## Quick Start
 
-For teaching, begin each chapter by running the lab once and asking students to identify which
-decision represents the unsafe path. Then inspect the scenario code and locate the control that
-changed the outcome. After that, ask students to extend the scenario: add a new tool, a new data
-class, a new failure mode, a new policy overlay, or a new eval. This sequence keeps the class
-from         becoming a tour of defensive terminology. Students learn that a harness is made of
-small explicit         contracts, each with a reason to exist, a failure it prevents, and
-evidence it must produce.
+Use Python 3.11 or later.
 
-For practitioner workshops, treat HarnessLab as a tabletop-to-code bridge. A security architect
-can         run the Chapter 5 context lab and compare it with an internal retrieval pipeline. A
-platform team can         run the Chapter 8 runtime-steering lab and ask whether its own agent
-platform can pause a compromised         run without destroying forensic evidence. A governance
-team can run Chapter 10 and ask where labels         are lost between intake, tools, memory,
-traces, and output. A DevSecOps team can wire the CLI into CI         and use the tests as
-examples for policy-as-test gates.
+```bash
+python -m pip install -e .
+python -m harnesslab.cli list
+python -m harnesslab.cli run ch07 --json
+python -m harnesslab.cli run all
+python scripts/qa.py
+```
 
-Long-running agents are the reason the repository emphasizes state. A short chatbot can fail in
-a         single response. A long-horizon agent can fail because it resumes with stale context,
-renews         credentials incorrectly, promotes an unsafe memory, loses a trace boundary,
-retries a non-idempotent         tool call, or carries a data label into the wrong region. Each
-chapter README therefore includes a         section on long-running-agent considerations, and
-each lab includes at least one artifact that could         survive beyond a single model call: a
-checkpoint, ledger entry, delegation chain, trace envelope,         queue state, or lineage
-record.
+The installed console command is also available:
 
-The repository is also designed for extension. A course can assign teams to replace the
-deterministic         simulations with real integrations: OpenTelemetry for traces, OPA or Cedar
-for policy, SPIFFE/SPIRE         for workload identity, a real vector store for memory and
-retrieval, a workflow engine for durable         orchestration, or a sandboxed code runner for
-tool execution. Those integrations should preserve the         locked contracts rather than
-hiding the concepts behind infrastructure. The goal is always the same:         make every
-consequential agent step authorized by intent, constrained by identity, informed by
-trusted context, recorded as evidence, governed by data policy, and reversible or interruptible
-when         risk changes.
+```bash
+harnesslab list
+harnesslab run all
+```
 
-Suggested course use is straightforward. In a ten-week module, assign one chapter folder per
-week.         In a semester course, pair each lab with a design review and an implementation
-extension. In an         executive or practitioner workshop, select Chapters 1, 5, 7, 8, and 10
-as the core path because they         cover architecture, context, evidence, runtime control,
-and governance. For a secure software         engineering course, emphasize Chapters 2, 3, 4,
-and 9, because they map cleanly to least privilege,         authorization, approvals, and
-reliability engineering. For an AI security course, treat all ten         chapters as a pattern
-language and ask students to build a threat model using CSA MAESTRO concepts         against
-each lab.
-## Teaching Extension Notes
+Every chapter runner returns a `LabResult` with `chapter`, `title`, `passed`, `score`, `summary`, `decisions`, and `artifacts`. The decisions are the teaching surface. They show where the harness allowed low-risk work, denied an unsafe route, escalated an action for human approval, warned about drift, quarantined hostile context, or preserved evidence for replay. The artifacts show the state that would matter in production: a delegation chain, checkpoint, memory ledger entry, trace envelope, queue state, lineage record, or compliance hash.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+## Chapter Map
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
-## Teaching Extension Notes
+Chapter 1, **Hill Climbing and the Secure Harness: Design Patterns for Local Search in Agentic Systems**, introduces the secure harness as the reference architecture for controlled agentic search. The lab starts with an unsafe shared-tool swarm and maps it to a control and evidence matrix.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+Chapter 2, **Autonomy: Graduated Control and Human Oversight**, treats autonomy as a ladder instead of a switch. The lab demonstrates capability budgets, approval queues, non-waivable controls, authority expiry, renewal, and rollback hooks.
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
-## Teaching Extension Notes
+Chapter 3, **Identity: Per-Agent Identity and Delegation Chains**, replaces shared tokens with accountable agent, task, workload, tool, and resource identities. The lab exercises audience-bound credentials, revocation, pause/resume rotation, and least-privilege scope checks.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+Chapter 4, **Intent: Contracts, Drift Detection, and Authorization by Purpose**, treats declared purpose as an authorization boundary. The lab checks tool scope, data scope, risk, evidence, stale goals, safe rewriting, and purpose-bound reauthorization.
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
-## Teaching Extension Notes
+Chapter 5, **Context: Trust Tiers, Provenance, and Poisoning Containment**, treats context as both information and authority. The lab releases only trusted and fresh context, quarantines external instructions, blocks lethal-trifecta egress, and preserves quarantine evidence.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+Chapter 6, **Memory: State Firewall, Ledger, and Forgetting**, treats memory as future behavior. The lab gates memory writes, records state in a ledger, promotes safe handoffs, isolates tenants, expires records, and tombstones poisoned memory.
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
-## Teaching Extension Notes
+Chapter 7, **Observability: Traces, Evals, and Hill-Climbing Evidence**, turns traces into the evidentiary layer for improvement. The lab emits redacted spans, hashes artifacts, builds replay bundles, detects benchmark regression, and governs recursive improvement.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+Chapter 8, **Runtime Steering: Intervention, Policy Injection, and Safe Rollback**, shows how to steer a run after execution begins. The lab observes, warns, pauses, blocks, kills, quarantines, recovers, replays, compensates, and expires bounded policy overlays.
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
-## Teaching Extension Notes
+Chapter 9, **Scalability: Fleet Coordination Without Cascading Failure**, moves from a single run to a fleet. The lab covers tenant bulkheads, global queues, quota escalation, rate-limit back-pressure, idempotent retries, compromised-worker quarantine, and capacity epochs.
 
-The repository lab can be extended in several directions. Ask learners to identify the asset
-being protected, the authority being granted, the evidence being recorded, and the recovery
-action that remains possible after failure. Then ask them to change one variable at a time. If
-the data class changes, which tool routes should fail? If the run resumes after a pause, which
-credentials, policies, context sources, and memory records must be checked again? If an
-evaluator says the new harness version improved capability, what security regression would make
-that improvement unacceptable? If an operator overrides a decision, what evidence should be
-captured so the override remains accountable?
+Chapter 10, **Data Governance: Classification-Aware Tools, Egress, and Compliance**, makes data governance a runtime property of the harness. The lab routes labeled data through approved profiles, blocks unsafe egress and residency drift, escalates secret leakage, persists labels across resume, and proves erasure across memory plus trace evidence.
 
-The answer should never be simply to trust the model or to block all action. Secure agentic
-engineering is the discipline of preserving useful agency while making the search process
-bounded. Each extension should leave a reviewer with a clear story: what the agent attempted,
-what the harness knew, what policy applied, what decision was made, what evidence was retained,
-and what recovery path remains. That story is the difference between a demo and an operational
-system.
+## Teaching Method
+
+The preferred teaching sequence is run, inspect, extend, and review. First, run a chapter and read the JSON output without looking at the implementation. Ask students to identify which decision represents the unsafe path and which artifact would matter to an auditor or incident responder. Second, inspect `scenario.py` and locate the harness control that changed the outcome. Third, extend the scenario with one realistic failure: stale approval after a pause, subagent use of a parent credential, external context that carries instructions, memory promotion from an untrusted source, a trace that omits an artifact hash, a retry that repeats a non-idempotent action, or a data label that disappears before egress. Fourth, review whether the new control preserves useful agency while making the run bounded, justified, traced, interruptible, and recoverable.
+
+This sequence keeps the material from becoming a vocabulary tour. Students should not leave with a list of terms; they should leave with the habit of asking what authority is being granted, what purpose justifies it, what context informed it, what state will outlive it, what evidence explains it, and what recovery path remains. That habit is the core of secure harness engineering.
+
+## Practitioner Use
+
+For practitioner workshops, treat HarnessLab as a tabletop-to-code bridge. A security architect can run the Chapter 5 context lab and compare it with an internal retrieval pipeline. A platform team can run the Chapter 8 runtime-steering lab and ask whether its own agent platform can pause a compromised run without destroying forensic evidence. A governance team can run Chapter 10 and ask where labels are lost between intake, tools, memory, traces, and output. A DevSecOps team can wire the CLI into CI and use the tests as examples for policy-as-test gates.
+
+The repository is also useful for design reviews. Pick one chapter, run the lab, and map every decision to an internal system. If the internal platform lacks a corresponding component, decide whether the gap belongs in the model gateway, tool gateway, workflow engine, identity plane, memory service, trace backend, CI pipeline, or governance layer. Then ask what evidence would convince a reviewer that the control worked. The goal is not to copy the toy implementation. The goal is to identify the production boundary that needs an explicit contract.
+
+## Long-Running Agents
+
+Long-running agents are the reason this repository emphasizes state. A short chatbot can fail in a single response. A long-horizon agent can fail because it resumes with stale context, renews credentials incorrectly, promotes unsafe memory, loses a trace boundary, retries a non-idempotent action, or carries a data label into the wrong region. Each chapter therefore includes a long-running-agent angle, and each lab includes at least one artifact that could survive beyond a single model call: a checkpoint, ledger entry, delegation chain, trace envelope, queue state, policy overlay, or lineage record.
+
+When extending the labs, pay attention to what happens at pause and resume. Credentials may need rotation. Intent may need renewal. Context may need freshness checks. Memory may need promotion gates. Traces may need continuity. Runtime policy overlays may need expiry. Fleet queues may need idempotency. Data labels may need to persist across summaries, memory, traces, and outputs. These are the places where long-running systems quietly become unsafe even when every individual tool call looks reasonable.
+
+## Quality Gates
+
+The repository includes tests and a QA script because the labs are part of a book project, not disposable demos. `python -m unittest discover -s tests` verifies the core controls and registered lab execution. `python scripts/qa.py` runs the tests, checks that every README is long enough for teaching, rejects repeated major headings, and rejects duplicated long paragraphs inside or across README files. GitHub Actions runs the same gates across supported Python versions.
+
+The quality bar is intentionally practical. A chapter is not complete because it prints JSON. It must show a success path and a bounded unsafe path. It must return deterministic artifacts. It must be readable without external services. It must teach the chapter's pattern rather than merely naming it. It must avoid repeated filler text, because repeated filler hides weak thinking and makes the course material harder to trust.
+
+## Repository Structure
+
+The repository has three layers. The first layer is `harnesslab/`, which contains the reusable control-plane primitives. `core.py` defines the security and governance vocabulary used across the labs: identities, task credentials, tool calls, policy decisions, intent contracts, context items, memory records, trace spans, evidence envelopes, checkpoints, runtime control, fleet coordination, and data-governance routing. `labs.py` is the registry that binds the public chapter keys to their scenario modules. `cli.py` is the thin command-line surface used by students and CI. This separation matters because students can see which ideas are shared harness infrastructure and which ideas belong to a specific chapter.
+
+The second layer is `chapters/`. Each chapter folder contains its own `scenario.py`, `run.py`, and README. The scenario implements the chapter's executable teaching case. The runner keeps the direct module command simple. The README explains the security pattern, the failure mode, the long-running-agent concern, and the interpretation of the returned evidence. Chapter folders should remain independent teaching modules; a student should be able to study Chapter 4 intent contracts without needing to understand every detail of Chapter 9 fleet coordination.
+
+The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `scripts/qa.py` adds publication-oriented checks that normal unit tests miss, including README length and duplication checks. `.github/workflows/ci.yml` runs the same gates on GitHub. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.
+
+## Extension Path
+
+HarnessLab can be extended in several directions after the manuscript examples stabilize. A course can assign teams to replace the deterministic simulations with real integrations: OpenTelemetry for traces, OPA or Cedar for policy, SPIFFE/SPIRE for workload identity, a vector store for memory and retrieval, a workflow engine for durable orchestration, or a sandboxed code runner for tool execution. Those integrations should preserve the locked contracts instead of hiding the concepts behind infrastructure. The learning goal remains the same: every consequential agent step should be authorized by intent, constrained by identity, informed by trusted context, recorded as evidence, governed by data policy, and reversible or interruptible when risk changes.
+
+For a ten-week module, assign one chapter folder per week. For a semester course, pair each lab with a design review and an implementation extension. For an executive or practitioner workshop, select Chapters 1, 5, 7, 8, and 10 as the core path because they cover architecture, context, evidence, runtime control, and governance. For a secure software engineering course, emphasize Chapters 2, 3, 4, and 9 because they map cleanly to least privilege, authorization, approvals, and reliability engineering. For an AI security course, treat all ten chapters as a pattern language and ask students to build a CSA MAESTRO-style threat model against each lab.

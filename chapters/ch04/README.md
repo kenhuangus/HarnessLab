@@ -1,4 +1,4 @@
-# Chapter 4: Intent
+# **Chapter 4: Intent: Contracts, Drift Detection, and Authorization by Purpose**
 
 Chapter 4 teaches the control plane that sits between an agent's stated goal and the tools it wants to use. A long-running agent can hold a useful instruction at the start of a run, then slowly drift as it reads more context, follows subgoals, resumes from checkpoints, or receives a new request from a human. The harness cannot treat "the user asked me to help" as a permanent all-access pass. It needs a concrete intent contract that says what purpose is approved, who may act on it, what tools are in scope, what data may be touched, how much risk is acceptable, what evidence must exist, and when a new authorization is required.
 

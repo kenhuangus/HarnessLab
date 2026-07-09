@@ -1,4 +1,4 @@
-# Chapter 2: Autonomy
+# **Chapter 2: Autonomy: Graduated Control and Human Oversight**
 
 Autonomy is not a single switch. A secure long-horizon agent should not move
 from "human typed every instruction" directly to "agent can do anything until it

@@ -1,4 +1,4 @@
-# Chapter 3: Identity
+# **Chapter 3: Identity: Per-Agent Identity and Delegation Chains**
 
 Identity is the control plane that lets a secure harness answer four practical questions about long-horizon agent work: who is acting, what task are they acting for, who delegated that authority, and where is the credential allowed to be used. A prompt alone cannot answer those questions. A model can say "I am the patching agent" or "I am only reading the ticket," but a production system needs an inspectable object that says the same thing in a form policy code can verify.
 

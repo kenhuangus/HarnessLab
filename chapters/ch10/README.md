@@ -1,4 +1,4 @@
-# CH10 - Data Governance: Classification-Aware Routing, Residency, and Evidence
+# **Chapter 10: Data Governance: Classification-Aware Tools, Egress, and Compliance**
 
 Chapter 10 teaches how a long-running agent harness can make data governance an executable control instead of a policy document that people hope the agent remembers. The lab focuses on a common production problem: an agent needs to work across tickets, memory, traces, model calls, tool calls, and compliance evidence, but each piece of data carries different handling requirements. Some information is public. Some is internal. Some is PII. Some is a secret. Some is regulated by geography. The agent's usefulness depends on moving the right data to the right tool at the right time, but the organization's safety depends on proving that unsafe routes were blocked, sensitive values were redacted or escalated, residency was respected, and deletion requests reached every place the data was stored.
 

@@ -1,4 +1,4 @@
-# CH09 - Scalability: Fleet Coordination Without Cascading Failure
+# **Chapter 9: Scalability: Fleet Coordination Without Cascading Failure**
 
 Chapter 9 teaches the part of agent safety that becomes visible only when a system is busy for a long time. A single agent can look safe in a short demo because the demo has one user, one task, one tool call, and one happy path. A production fleet has many tenants, many workers, many queues, many retries, shifting rate limits, and partial failures that arrive while useful work is already in flight. In that setting, a secure harness is not just a prompt wrapper. It is a control plane that decides which work may start, which work must wait, which worker is allowed to hold a lease, which retries are safe, which capacity is already committed, and which evidence must survive a pause or incident review.
 

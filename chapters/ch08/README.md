@@ -1,4 +1,4 @@
-# Chapter 8: Runtime Steering
+# **Chapter 8: Runtime Steering: Intervention, Policy Injection, and Safe Rollback**
 
 Runtime steering is the control plane for an agent that is already in motion. Earlier chapters teach how to shape a run before it starts: identify the actor, define intent, filter context, guard memory, and collect observability. Those controls are necessary, but they are not sufficient for long-running agents. A long-running agent may spend minutes, hours, or days moving through a workflow. During that time the world can change. A ticket can receive a hostile comment. A human can discover that a tool was misclassified. A downstream system can begin returning risky data. A new policy can be issued while the agent is halfway through a task. The important question is not only "was this agent allowed to start?" It is also "can the harness safely intervene after the agent has started?"
 
