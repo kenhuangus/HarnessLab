@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "harnesslab"
+version = "0.1.0"
+description = "Runnable companion labs for Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Ken Huang" },
+  { name = "Chris Hughes" },
+  { name = "Rob van der Veer" }
+]
+license = { text = "Apache-2.0" }
+keywords = ["agentic-ai", "multi-agent", "security", "harness", "ai-safety", "devsecops"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance"
+]
+dependencies = []
+
+[project.scripts]
+harnesslab = "harnesslab.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["harnesslab*", "chapters*"]
