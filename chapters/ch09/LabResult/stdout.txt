@@ -1,0 +1,538 @@
+[
+  {
+    "artifacts": {
+      "capacity_governance": {
+        "checkpoints": [
+          {
+            "epoch": 1,
+            "reason": "long-running task requires resumable checkpoint",
+            "task_id": "acme-patch-002"
+          }
+        ],
+        "epoch": 2,
+        "epoch_limit": 6,
+        "epoch_rollovers": [
+          {
+            "from_epoch": 1,
+            "remaining_before_rollover": 0,
+            "task_id": "globex-triage-003"
+          }
+        ],
+        "remaining": 2
+      },
+      "controls_exercised": [
+        "back_pressure",
+        "bulkhead",
+        "capacity_governance",
+        "checkpoint",
+        "commit_log",
+        "compromised_worker",
+        "containment",
+        "fleet",
+        "human_review",
+        "idempotency",
+        "long_running_capacity",
+        "queue",
+        "quota",
+        "rate_limit",
+        "replay_protection",
+        "retry",
+        "retry_ledger",
+        "side_effect_suppression",
+        "unsafe_retry_blocked",
+        "worker_release"
+      ],
+      "fleet": {
+        "active": {},
+        "completed": [
+          "acme-triage-001",
+          "globex-triage-003",
+          "acme-patch-002",
+          "acme-followup-004"
+        ],
+        "promotions": [
+          {
+            "task_id": "acme-patch-002",
+            "worker_id": "acme-worker-1"
+          },
+          {
+            "task_id": "globex-triage-003",
+            "worker_id": "globex-worker-1"
+          },
+          {
+            "task_id": "acme-followup-004",
+            "worker_id": "acme-worker-1"
+          }
+        ],
+        "quarantined_workers": [
+          "acme-worker-2"
+        ],
+        "queued": [],
+        "tenant_reserved": {
+          "acme": 8,
+          "globex": 2
+        }
+      },
+      "idempotency_ledger": {
+        "acme:incident-77:patch": {
+          "attempts": 2,
+          "payload_hash": "42c2dfa320312ba0",
+          "status": "completed",
+          "task_id": "acme-patch-002"
+        },
+        "acme:incident-77:triage": {
+          "attempts": 1,
+          "payload_hash": "e178ddb3385fb6fc",
+          "status": "completed",
+          "task_id": "acme-triage-001"
+        },
+        "acme:incident-78:patch": {
+          "attempts": 1,
+          "payload_hash": "bda425bfa064caa3",
+          "status": "completed",
+          "task_id": "acme-followup-004"
+        },
+        "globex:incident-12:triage": {
+          "attempts": 1,
+          "payload_hash": "1648e11d09e6aa84",
+          "status": "completed",
+          "task_id": "globex-triage-003"
+        }
+      },
+      "rate_limits": {
+        "delayed": [
+          {
+            "resumed_in_window": 2,
+            "task_id": "acme-patch-002",
+            "tool": "read_ticket"
+          },
+          {
+            "resumed_in_window": 2,
+            "task_id": "acme-patch-002",
+            "tool": "patch_repo"
+          },
+          {
+            "resumed_in_window": 3,
+            "task_id": "acme-followup-004",
+            "tool": "patch_repo"
+          }
+        ],
+        "used": {
+          "deploy_service": 0,
+          "patch_repo": 1,
+          "read_ticket": 2
+        },
+        "windows": {
+          "deploy_service": 1,
+          "patch_repo": 3,
+          "read_ticket": 2
+        }
+      },
+      "required_controls": [
+        "back_pressure",
+        "bulkhead",
+        "capacity_governance",
+        "checkpoint",
+        "compromised_worker",
+        "containment",
+        "fleet",
+        "idempotency",
+        "long_running_capacity",
+        "queue",
+        "quota",
+        "rate_limit",
+        "retry"
+      ],
+      "unsafe_paths": {
+        "compromised_worker_contained": true,
+        "poisoned_retry_blocked": true,
+        "quota_escalated": true
+      }
+    },
+    "chapter": "ch09",
+    "decisions": [
+      {
+        "controls": [
+          "fleet",
+          "bulkhead",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "task acme-triage-001 admitted to acme-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "retry_ledger"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key recorded for acme-triage-001",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "capacity_governance",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "capacity reserved in epoch 1 for acme-triage-001",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted read_ticket for acme-triage-001",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "bulkhead",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "task acme-patch-002 admitted to acme-worker-2",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "retry_ledger"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key recorded for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "long_running_capacity",
+          "checkpoint",
+          "capacity_governance"
+        ],
+        "decision": "warn",
+        "reason": "long-running work requires checkpoint before execution",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "capacity_governance",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "capacity reserved in epoch 1 for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted read_ticket for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted patch_repo for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "queue",
+          "back_pressure",
+          "bulkhead"
+        ],
+        "decision": "warn",
+        "reason": "global fleet capacity is saturated; task globex-triage-003 queued with back-pressure",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "queue",
+          "back_pressure",
+          "bulkhead"
+        ],
+        "decision": "warn",
+        "reason": "tenant acme bulkhead is saturated; task acme-followup-004 queued with back-pressure",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "quota",
+          "long_running_capacity",
+          "human_review"
+        ],
+        "decision": "escalate",
+        "reason": "tenant acme capacity quota exceeded",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "bulkhead",
+          "compromised_worker",
+          "containment",
+          "queue"
+        ],
+        "decision": "deny",
+        "reason": "worker acme-worker-2 quarantined; lease for acme-patch-002 revoked and requeued",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "commit_log"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key completed for acme-triage-001",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "worker_release"
+        ],
+        "decision": "allow",
+        "reason": "task acme-triage-001 released worker acme-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "queue",
+          "back_pressure",
+          "bulkhead"
+        ],
+        "decision": "allow",
+        "reason": "queued task acme-patch-002 promoted to acme-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "retry",
+          "side_effect_suppression"
+        ],
+        "decision": "warn",
+        "reason": "idempotent retry allowed after worker lease loss",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "capacity_governance",
+          "idempotency",
+          "retry"
+        ],
+        "decision": "allow",
+        "reason": "retry reused the original capacity reservation",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit",
+          "back_pressure",
+          "queue"
+        ],
+        "decision": "warn",
+        "reason": "rate limit reached for read_ticket; task delayed to next window",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted read_ticket for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit",
+          "back_pressure",
+          "queue"
+        ],
+        "decision": "warn",
+        "reason": "rate limit reached for patch_repo; task delayed to next window",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted patch_repo for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "queue",
+          "back_pressure",
+          "bulkhead"
+        ],
+        "decision": "allow",
+        "reason": "queued task globex-triage-003 promoted to globex-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "retry_ledger"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key recorded for globex-triage-003",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "long_running_capacity",
+          "capacity_governance",
+          "back_pressure"
+        ],
+        "decision": "warn",
+        "reason": "capacity budget exhausted; work deferred to next governance epoch",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "capacity_governance",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "capacity reserved in epoch 2 for globex-triage-003",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted read_ticket for globex-triage-003",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "replay_protection",
+          "unsafe_retry_blocked"
+        ],
+        "decision": "deny",
+        "reason": "idempotency key reused with a different payload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "commit_log"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key completed for globex-triage-003",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "worker_release"
+        ],
+        "decision": "allow",
+        "reason": "task globex-triage-003 released worker globex-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "commit_log"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key completed for acme-patch-002",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "worker_release"
+        ],
+        "decision": "allow",
+        "reason": "task acme-patch-002 released worker acme-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "queue",
+          "back_pressure",
+          "bulkhead"
+        ],
+        "decision": "allow",
+        "reason": "queued task acme-followup-004 promoted to acme-worker-1",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "retry_ledger"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key recorded for acme-followup-004",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "capacity_governance",
+          "quota"
+        ],
+        "decision": "allow",
+        "reason": "capacity reserved in epoch 2 for acme-followup-004",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit",
+          "back_pressure",
+          "queue"
+        ],
+        "decision": "warn",
+        "reason": "rate limit reached for patch_repo; task delayed to next window",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "rate_limit"
+        ],
+        "decision": "allow",
+        "reason": "rate window admitted patch_repo for acme-followup-004",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "idempotency",
+          "commit_log"
+        ],
+        "decision": "allow",
+        "reason": "idempotency key completed for acme-followup-004",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "fleet",
+          "worker_release"
+        ],
+        "decision": "allow",
+        "reason": "task acme-followup-004 released worker acme-worker-1",
+        "rewritten_call": null
+      }
+    ],
+    "passed": true,
+    "score": 1.0,
+    "summary": "Fleet coordination exercised tenant bulkheads, queues, quotas, rate limits, idempotent retries, compromised-worker containment, and long-running capacity governance.",
+    "title": "Scalability: Fleet Coordination Without Cascading Failure"
+  }
+]

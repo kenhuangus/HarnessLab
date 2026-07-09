@@ -1,0 +1,521 @@
+[
+  {
+    "artifacts": {
+      "checkpoint": {
+        "active_label_id": "label_df83aa9edb7f98a9",
+        "checkpoint_id": "ckpt_538c55dc3d931fd2",
+        "policy_version": "ch10-governance-policy-v2",
+        "state_keys": [
+          "active_label",
+          "memory_keys",
+          "trace_subject_ref"
+        ]
+      },
+      "compliance_evidence": {
+        "checkpoint_id": "ckpt_538c55dc3d931fd2",
+        "controls": [
+          "classification_aware_model_routing",
+          "tool_gateway",
+          "pii_redaction",
+          "secret_dlp",
+          "egress_allowlist",
+          "residency",
+          "lineage",
+          "memory_erasure",
+          "trace_erasure",
+          "compliance_evidence",
+          "long_running_label_persistence"
+        ],
+        "evidence_hash": "6baecd3b3e9bd657ed5e858adfec5430f3f514d7547c67939ce061c1590bb60a",
+        "lineage": [
+          {
+            "data_class": "pii",
+            "destination": "internal-ticketing",
+            "region": "us",
+            "tool": "read_ticket"
+          },
+          {
+            "data_class": "secret",
+            "destination": "approved-siem",
+            "region": "vault",
+            "tool": "query_vault"
+          },
+          {
+            "data_class": "regulated",
+            "destination": "eu-regulated-model",
+            "region": "eu",
+            "tool": "emit_trace"
+          },
+          {
+            "data_class": "public",
+            "destination": "training-console",
+            "region": "global",
+            "tool": "emit_trace"
+          }
+        ],
+        "memory": [
+          {
+            "data_class": "pii",
+            "deleted": true,
+            "key": "customer-impact-label",
+            "policy_version": "ch10-governance-policy-v2",
+            "record_id": "mem_1961e09881b3b610",
+            "tombstone_reason": "subject erasure request DSR-10",
+            "trust_tier": "tenant"
+          }
+        ],
+        "policy_version": "ch10-governance-policy-v2",
+        "run_id": "ch10-long-running-governance-run",
+        "trace": [
+          {
+            "data_class": "pii",
+            "deleted": true,
+            "event_id": "trace_417cd30ebee602c0",
+            "field_names": [
+              "redacted"
+            ],
+            "label_id": "label_df83aa9edb7f98a9",
+            "name": "ticket_ingested",
+            "subject_ref": "subject_2d985f691975ed96",
+            "tombstone_reason": "subject erasure request DSR-10"
+          },
+          {
+            "data_class": "pii",
+            "deleted": true,
+            "event_id": "trace_e319f62fe2a35462",
+            "field_names": [
+              "redacted"
+            ],
+            "label_id": "label_df83aa9edb7f98a9",
+            "name": "redacted_pii_route",
+            "subject_ref": "subject_2d985f691975ed96",
+            "tombstone_reason": "subject erasure request DSR-10"
+          }
+        ]
+      },
+      "counts": {
+        "allowed": 23,
+        "denied": 6,
+        "escalated": 1,
+        "warned": 0
+      },
+      "deletion_evidence": {
+        "memory_tombstones": [
+          "mem_1961e09881b3b610"
+        ],
+        "subject_ref": "subject_2d985f691975ed96",
+        "trace_tombstones": [
+          "trace_417cd30ebee602c0",
+          "trace_e319f62fe2a35462"
+        ]
+      },
+      "labels": {
+        "pii": {
+          "data_class": "pii",
+          "label_id": "label_df83aa9edb7f98a9",
+          "lineage_parent": "ticket:SEC-144",
+          "policy_version": "ch10-governance-policy-v2",
+          "residency_region": "us",
+          "subject_ref": "subject_2d985f691975ed96"
+        },
+        "public": {
+          "data_class": "public",
+          "label_id": "label_f26d1b93c4e48883",
+          "lineage_parent": "trace:redacted",
+          "policy_version": "ch10-governance-policy-v2",
+          "residency_region": "global",
+          "subject_ref": null
+        },
+        "regulated": {
+          "data_class": "regulated",
+          "label_id": "label_408624264a1e5a1a",
+          "lineage_parent": "case:EU-77",
+          "policy_version": "ch10-governance-policy-v2",
+          "residency_region": "eu",
+          "subject_ref": null
+        },
+        "secret": {
+          "data_class": "secret",
+          "label_id": "label_55d58ea302b6ef8e",
+          "lineage_parent": "vault:rotation-candidate",
+          "policy_version": "ch10-governance-policy-v2",
+          "residency_region": "vault",
+          "subject_ref": null
+        }
+      },
+      "lineage": [
+        {
+          "data_class": "pii",
+          "destination": "internal-ticketing",
+          "region": "us",
+          "tool": "read_ticket"
+        },
+        {
+          "data_class": "secret",
+          "destination": "approved-siem",
+          "region": "vault",
+          "tool": "query_vault"
+        },
+        {
+          "data_class": "regulated",
+          "destination": "eu-regulated-model",
+          "region": "eu",
+          "tool": "emit_trace"
+        },
+        {
+          "data_class": "public",
+          "destination": "training-console",
+          "region": "global",
+          "tool": "emit_trace"
+        }
+      ],
+      "memory": [
+        {
+          "data_class": "pii",
+          "deleted": true,
+          "key": "customer-impact-label",
+          "policy_version": "ch10-governance-policy-v2",
+          "record_id": "mem_1961e09881b3b610",
+          "tombstone_reason": "subject erasure request DSR-10",
+          "trust_tier": "tenant"
+        }
+      ],
+      "observed_decision_controls": [
+        "chapter_adapter",
+        "checkpoint",
+        "classification",
+        "classification_integrity",
+        "compliance_evidence",
+        "data_governance",
+        "dlp",
+        "egress",
+        "erasure",
+        "label_persistence",
+        "lineage",
+        "long_running_state",
+        "memory",
+        "model_routing",
+        "redaction",
+        "residency",
+        "rollback",
+        "state_ledger",
+        "subject_reference",
+        "tool_gateway",
+        "trace_retention",
+        "training_exclusion",
+        "write_gate"
+      ],
+      "trace": [
+        {
+          "data_class": "pii",
+          "deleted": true,
+          "event_id": "trace_417cd30ebee602c0",
+          "field_names": [
+            "redacted"
+          ],
+          "label_id": "label_df83aa9edb7f98a9",
+          "name": "ticket_ingested",
+          "subject_ref": "subject_2d985f691975ed96",
+          "tombstone_reason": "subject erasure request DSR-10"
+        },
+        {
+          "data_class": "pii",
+          "deleted": true,
+          "event_id": "trace_e319f62fe2a35462",
+          "field_names": [
+            "redacted"
+          ],
+          "label_id": "label_df83aa9edb7f98a9",
+          "name": "redacted_pii_route",
+          "subject_ref": "subject_2d985f691975ed96",
+          "tombstone_reason": "subject erasure request DSR-10"
+        }
+      ]
+    },
+    "chapter": "ch10",
+    "decisions": [
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile ticket-local-small accepted pii workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "lineage"
+        ],
+        "decision": "allow",
+        "reason": "data route approved",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification"
+        ],
+        "decision": "deny",
+        "reason": "model profile consumer-assistant is not approved for pii",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "residency"
+        ],
+        "decision": "deny",
+        "reason": "model profile ticket-local-small runs in us, label requires eu",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "label_persistence",
+          "classification_integrity"
+        ],
+        "decision": "deny",
+        "reason": "tool call declared internal but persisted label is pii",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile vault-broker accepted secret workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "dlp"
+        ],
+        "decision": "escalate",
+        "reason": "possible secret in outbound payload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile vault-broker accepted secret workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "lineage"
+        ],
+        "decision": "allow",
+        "reason": "data route approved",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway",
+          "chapter_adapter"
+        ],
+        "decision": "allow",
+        "reason": "regulated trace adapter registered for chapter scenario",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile eu-regulated-reviewer accepted regulated workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "lineage"
+        ],
+        "decision": "allow",
+        "reason": "data route approved",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "residency"
+        ],
+        "decision": "deny",
+        "reason": "regulated must stay in eu",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile training-console-summarizer accepted public workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "lineage"
+        ],
+        "decision": "allow",
+        "reason": "data route approved",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "tool_gateway"
+        ],
+        "decision": "allow",
+        "reason": "tool gateway accepted call",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "model_routing",
+          "classification",
+          "residency",
+          "training_exclusion"
+        ],
+        "decision": "allow",
+        "reason": "model profile public-saas-analytics accepted public workload",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "data_governance",
+          "egress"
+        ],
+        "decision": "deny",
+        "reason": "destination not on egress allowlist",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "dlp",
+          "redaction",
+          "subject_reference"
+        ],
+        "decision": "allow",
+        "reason": "PII payload rewritten into subject reference subject_2d985f691975ed96",
+        "rewritten_call": "read_ticket"
+      },
+      {
+        "controls": [
+          "memory",
+          "state_ledger"
+        ],
+        "decision": "allow",
+        "reason": "memory record mem_1961e09881b3b610 stored",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "memory",
+          "write_gate"
+        ],
+        "decision": "deny",
+        "reason": "sensitive memory must come from trusted authority",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "label_persistence",
+          "checkpoint",
+          "long_running_state"
+        ],
+        "decision": "allow",
+        "reason": "classification label survived checkpoint and resume",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "memory",
+          "rollback"
+        ],
+        "decision": "allow",
+        "reason": "memory record mem_1961e09881b3b610 tombstoned",
+        "rewritten_call": null
+      },
+      {
+        "controls": [
+          "trace_retention",
+          "erasure",
+          "compliance_evidence"
+        ],
+        "decision": "allow",
+        "reason": "2 subject-linked trace event(s) tombstoned",
+        "rewritten_call": null
+      }
+    ],
+    "passed": true,
+    "score": 1.0,
+    "summary": "Chapter 10 routes labeled data through approved model and tool profiles, blocks unsafe egress and residency drift, escalates secret leakage, persists labels across resume, and proves erasure across memory plus trace evidence.",
+    "title": "Data Governance: Classification-Aware Tools, Egress, and Compliance"
+  }
+]
