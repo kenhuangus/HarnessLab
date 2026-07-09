@@ -1,0 +1,23 @@
+{
+  "title": "Figure 7.8 MAESTRO-Informed Observability Map",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "models", "type": "rect", "x": 20, "y": 40, "w": 230, "h": 78, "text": "Model layer\noutputs and refusals", "backgroundColor": "#e8f2ff" },
+    { "id": "prompts", "type": "rect", "x": 20, "y": 150, "w": 230, "h": 78, "text": "Prompt and intent\npolicy versions", "backgroundColor": "#e8f2ff" },
+    { "id": "tools", "type": "rect", "x": 20, "y": 260, "w": 230, "h": 78, "text": "Tool layer\ncalls side effects", "backgroundColor": "#e8f2ff" },
+    { "id": "memory", "type": "rect", "x": 20, "y": 370, "w": 230, "h": 78, "text": "Memory and context\nprovenance", "backgroundColor": "#e8f2ff" },
+    { "id": "orchestration", "type": "rect", "x": 390, "y": 150, "w": 250, "h": 124, "text": "Harness trace\nspans decisions\nartifact hashes", "backgroundColor": "#fff4d6" },
+    { "id": "evals", "type": "rect", "x": 780, "y": 60, "w": 250, "h": 96, "text": "Evals\nsafety reliability\nquality cost", "backgroundColor": "#e9f8ef" },
+    { "id": "audit", "type": "rect", "x": 780, "y": 250, "w": 250, "h": 96, "text": "Audit\nincident replay\ncompliance evidence", "backgroundColor": "#f4eafe" },
+    { "id": "govern", "type": "rect", "x": 1170, "y": 150, "w": 250, "h": 124, "text": "Governance\nMAESTRO risk\nNIST measure manage", "backgroundColor": "#ffe9e3" },
+    { "type": "arrow", "from": "models", "to": "orchestration" },
+    { "type": "arrow", "from": "prompts", "to": "orchestration" },
+    { "type": "arrow", "from": "tools", "to": "orchestration" },
+    { "type": "arrow", "from": "memory", "to": "orchestration" },
+    { "type": "arrow", "from": "orchestration", "to": "evals" },
+    { "type": "arrow", "from": "orchestration", "to": "audit" },
+    { "type": "arrow", "from": "evals", "to": "govern" },
+    { "type": "arrow", "from": "audit", "to": "govern" },
+    { "type": "arrow", "from": "govern", "to": "prompts", "text": "policy update", "points": [[0,0], [0,260], [-1150,260], [-1150,-34]] }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Figure 7.1 Secure Harness Observability Spine",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "intent", "type": "rect", "x": 20, "y": 140, "w": 170, "h": 72, "text": "Intent\ncontract", "backgroundColor": "#e8f2ff" },
+    { "id": "agent", "type": "rect", "x": 250, "y": 140, "w": 170, "h": 72, "text": "Agent\nrun", "backgroundColor": "#f7f7f7" },
+    { "id": "tools", "type": "rect", "x": 480, "y": 140, "w": 170, "h": 72, "text": "Tool and\nmemory calls", "backgroundColor": "#f7f7f7" },
+    { "id": "harness", "type": "rect", "x": 710, "y": 118, "w": 210, "h": 116, "text": "Harness\npolicy decisions\nallow rewrite escalate deny", "backgroundColor": "#fff4d6" },
+    { "id": "trace", "type": "rect", "x": 980, "y": 40, "w": 210, "h": 88, "text": "Trace spans\nand events", "backgroundColor": "#e9f8ef" },
+    { "id": "evals", "type": "rect", "x": 980, "y": 175, "w": 210, "h": 88, "text": "Evals and\nregression gates", "backgroundColor": "#e9f8ef" },
+    { "id": "evidence", "type": "rect", "x": 1250, "y": 108, "w": 230, "h": 126, "text": "Evidence envelope\nhashes replay bundle\npolicy version", "backgroundColor": "#f4eafe" },
+    { "id": "improve", "type": "rect", "x": 1540, "y": 128, "w": 190, "h": 88, "text": "Governed\nimprovement", "backgroundColor": "#ffe9e3" },
+    { "type": "arrow", "from": "intent", "to": "agent", "text": "authorizes" },
+    { "type": "arrow", "from": "agent", "to": "tools", "text": "acts" },
+    { "type": "arrow", "from": "tools", "to": "harness", "text": "mediated" },
+    { "type": "arrow", "from": "harness", "to": "trace", "text": "records" },
+    { "type": "arrow", "from": "harness", "to": "evals", "text": "measures" },
+    { "type": "arrow", "from": "trace", "to": "evidence", "text": "seals" },
+    { "type": "arrow", "from": "evals", "to": "evidence", "text": "justifies" },
+    { "type": "arrow", "from": "evidence", "to": "improve", "text": "permits" },
+    { "type": "arrow", "from": "improve", "to": "intent", "text": "updates under control", "points": [[0,0], [0,190], [-1520,190], [-1520,34]] }
+  ]
+}

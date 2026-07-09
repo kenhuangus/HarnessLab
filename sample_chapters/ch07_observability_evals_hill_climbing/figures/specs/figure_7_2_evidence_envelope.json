@@ -1,0 +1,19 @@
+{
+  "title": "Figure 7.2 Evidence Envelope and Artifact Hashes",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "run", "type": "rect", "x": 20, "y": 160, "w": 190, "h": 80, "text": "Run id\nactor\npolicy version", "backgroundColor": "#e8f2ff" },
+    { "id": "span", "type": "rect", "x": 300, "y": 40, "w": 210, "h": 90, "text": "Trace spans\nagent tool guardrail\nhandoff", "backgroundColor": "#e9f8ef" },
+    { "id": "artifacts", "type": "rect", "x": 300, "y": 180, "w": 210, "h": 90, "text": "Artifacts\nredacted input\neval report", "backgroundColor": "#e9f8ef" },
+    { "id": "replay", "type": "rect", "x": 300, "y": 320, "w": 210, "h": 90, "text": "Replay bundle\nfixtures expected\nverdicts", "backgroundColor": "#e9f8ef" },
+    { "id": "hashes", "type": "rect", "x": 610, "y": 180, "w": 230, "h": 100, "text": "SHA-256 hashes\ncontent-addressed\nevidence", "backgroundColor": "#fff4d6" },
+    { "id": "envelope", "type": "rect", "x": 940, "y": 132, "w": 260, "h": 160, "text": "Evidence envelope\nmetadata + hashes\nredaction markers\ntamper-evident digest", "backgroundColor": "#f4eafe" },
+    { "id": "audit", "type": "rect", "x": 1310, "y": 160, "w": 220, "h": 92, "text": "Auditor or\nincident reviewer", "backgroundColor": "#ffe9e3" },
+    { "type": "arrow", "from": "run", "to": "envelope", "text": "binds identity" },
+    { "type": "arrow", "from": "span", "to": "hashes", "text": "digest" },
+    { "type": "arrow", "from": "artifacts", "to": "hashes", "text": "digest" },
+    { "type": "arrow", "from": "replay", "to": "hashes", "text": "digest" },
+    { "type": "arrow", "from": "hashes", "to": "envelope", "text": "sealed list" },
+    { "type": "arrow", "from": "envelope", "to": "audit", "text": "verify and replay" }
+  ]
+}

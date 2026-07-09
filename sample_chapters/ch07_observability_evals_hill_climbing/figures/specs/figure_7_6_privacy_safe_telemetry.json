@@ -1,0 +1,20 @@
+{
+  "title": "Figure 7.6 Privacy-Safe Telemetry Pipeline",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "raw", "type": "rect", "x": 20, "y": 160, "w": 190, "h": 84, "text": "Raw observation\nPII secrets tools", "backgroundColor": "#ffe9e3" },
+    { "id": "classify", "type": "rect", "x": 300, "y": 160, "w": 190, "h": 84, "text": "Classify\nsource and data", "backgroundColor": "#fff4d6" },
+    { "id": "redact", "type": "rect", "x": 580, "y": 160, "w": 190, "h": 84, "text": "Redact or\nsummarize", "backgroundColor": "#fff4d6" },
+    { "id": "hash", "type": "rect", "x": 860, "y": 160, "w": 190, "h": 84, "text": "Hash raw\nartifact", "backgroundColor": "#e9f8ef" },
+    { "id": "store", "type": "rect", "x": 1140, "y": 80, "w": 220, "h": 92, "text": "Trace store\nsafe payload", "backgroundColor": "#e8f2ff" },
+    { "id": "vault", "type": "rect", "x": 1140, "y": 250, "w": 220, "h": 92, "text": "Restricted vault\nraw evidence", "backgroundColor": "#f4eafe" },
+    { "id": "retention", "type": "rect", "x": 1460, "y": 160, "w": 220, "h": 84, "text": "Retention and\naccess policy", "backgroundColor": "#f7f7f7" },
+    { "type": "arrow", "from": "raw", "to": "classify" },
+    { "type": "arrow", "from": "classify", "to": "redact" },
+    { "type": "arrow", "from": "redact", "to": "hash" },
+    { "type": "arrow", "from": "hash", "to": "store", "text": "redacted event" },
+    { "type": "arrow", "from": "hash", "to": "vault", "text": "if retained" },
+    { "type": "arrow", "from": "store", "to": "retention" },
+    { "type": "arrow", "from": "vault", "to": "retention" }
+  ]
+}

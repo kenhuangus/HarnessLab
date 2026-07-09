@@ -1,0 +1,20 @@
+{
+  "title": "Figure 7.4 Long-Horizon Trace Continuity Across Pause and Resume",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "turn1", "type": "rect", "x": 20, "y": 130, "w": 190, "h": 78, "text": "Turn 1\nplan and retrieve", "backgroundColor": "#e8f2ff" },
+    { "id": "tool1", "type": "rect", "x": 290, "y": 130, "w": 190, "h": 78, "text": "Tool call\nside effect", "backgroundColor": "#f7f7f7" },
+    { "id": "checkpoint", "type": "rect", "x": 560, "y": 100, "w": 220, "h": 138, "text": "Checkpoint\nstate hash\ncredential epoch\npolicy version", "backgroundColor": "#fff4d6" },
+    { "id": "pause", "type": "ellipse", "x": 870, "y": 130, "w": 170, "h": 78, "text": "Pause", "backgroundColor": "#f4eafe" },
+    { "id": "resume", "type": "ellipse", "x": 1130, "y": 130, "w": 170, "h": 78, "text": "Resume", "backgroundColor": "#f4eafe" },
+    { "id": "renew", "type": "rect", "x": 1380, "y": 92, "w": 220, "h": 148, "text": "Renewal checks\nintent freshness\ncredential rotation\ncontext age", "backgroundColor": "#fff4d6" },
+    { "id": "turn2", "type": "rect", "x": 1690, "y": 130, "w": 190, "h": 78, "text": "Turn 2\nact or escalate", "backgroundColor": "#ffe9e3" },
+    { "type": "arrow", "from": "turn1", "to": "tool1", "text": "span parent" },
+    { "type": "arrow", "from": "tool1", "to": "checkpoint", "text": "record" },
+    { "type": "arrow", "from": "checkpoint", "to": "pause", "text": "seal" },
+    { "type": "arrow", "from": "pause", "to": "resume", "text": "later" },
+    { "type": "arrow", "from": "resume", "to": "renew", "text": "validate" },
+    { "type": "arrow", "from": "renew", "to": "turn2", "text": "continue" },
+    { "type": "arrow", "from": "turn2", "to": "checkpoint", "text": "trace continuity", "points": [[0,0], [0,180], [-1130,180], [-1130,108]] }
+  ]
+}

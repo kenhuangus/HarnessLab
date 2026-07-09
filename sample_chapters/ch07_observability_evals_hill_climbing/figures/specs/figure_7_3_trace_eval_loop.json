@@ -1,0 +1,20 @@
+{
+  "title": "Figure 7.3 Trace to Eval to Improvement Loop",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "prod", "type": "rect", "x": 20, "y": 170, "w": 190, "h": 84, "text": "Production or\npilot traces", "backgroundColor": "#e8f2ff" },
+    { "id": "label", "type": "rect", "x": 300, "y": 170, "w": 190, "h": 84, "text": "Human and\nmodel feedback", "backgroundColor": "#e9f8ef" },
+    { "id": "suite", "type": "rect", "x": 580, "y": 170, "w": 190, "h": 84, "text": "Eval fixtures\nand graders", "backgroundColor": "#e9f8ef" },
+    { "id": "candidates", "type": "rect", "x": 860, "y": 170, "w": 210, "h": 84, "text": "Harness change\ncandidates", "backgroundColor": "#fff4d6" },
+    { "id": "gates", "type": "diamond", "x": 1170, "y": 150, "w": 200, "h": 124, "text": "Safety gates\npass?" , "backgroundColor": "#fff4d6" },
+    { "id": "ship", "type": "rect", "x": 1470, "y": 84, "w": 200, "h": 88, "text": "Bounded rollout\nwith rollback", "backgroundColor": "#ffe9e3" },
+    { "id": "reject", "type": "rect", "x": 1470, "y": 270, "w": 200, "h": 88, "text": "Reject or\nescalate", "backgroundColor": "#f7f7f7" },
+    { "type": "arrow", "from": "prod", "to": "label", "text": "enrich" },
+    { "type": "arrow", "from": "label", "to": "suite", "text": "convert" },
+    { "type": "arrow", "from": "suite", "to": "candidates", "text": "measure" },
+    { "type": "arrow", "from": "candidates", "to": "gates", "text": "compare" },
+    { "type": "arrow", "from": "gates", "to": "ship", "text": "yes" },
+    { "type": "arrow", "from": "gates", "to": "reject", "text": "no" },
+    { "type": "arrow", "from": "ship", "to": "prod", "text": "new baseline", "points": [[0,0], [0,-120], [-1450,-120], [-1450,86]] }
+  ]
+}

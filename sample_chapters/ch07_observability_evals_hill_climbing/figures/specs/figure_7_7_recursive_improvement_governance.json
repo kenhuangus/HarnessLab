@@ -1,0 +1,22 @@
+{
+  "title": "Figure 7.7 Recursive Self-Improvement Governance Flow",
+  "canvas": { "backgroundColor": "#ffffff" },
+  "elements": [
+    { "id": "proposal", "type": "rect", "x": 20, "y": 170, "w": 210, "h": 88, "text": "Agent proposes\nharness change", "backgroundColor": "#e8f2ff" },
+    { "id": "evidence", "type": "rect", "x": 320, "y": 170, "w": 210, "h": 88, "text": "Evidence hash\nand eval report", "backgroundColor": "#e9f8ef" },
+    { "id": "rollback", "type": "rect", "x": 620, "y": 170, "w": 210, "h": 88, "text": "Rollback\ncheckpoint", "backgroundColor": "#e9f8ef" },
+    { "id": "approval", "type": "rect", "x": 920, "y": 170, "w": 210, "h": 88, "text": "Human or policy\napproval", "backgroundColor": "#fff4d6" },
+    { "id": "complete", "type": "diamond", "x": 1230, "y": 150, "w": 220, "h": 128, "text": "Controls\ncomplete?", "backgroundColor": "#f4eafe" },
+    { "id": "deny", "type": "rect", "x": 1560, "y": 300, "w": 220, "h": 90, "text": "Deny and\npreserve trace", "backgroundColor": "#f7f7f7" },
+    { "id": "canary", "type": "rect", "x": 1560, "y": 74, "w": 220, "h": 90, "text": "Canary rollout\nlimited blast radius", "backgroundColor": "#ffe9e3" },
+    { "id": "monitor", "type": "rect", "x": 1870, "y": 74, "w": 210, "h": 90, "text": "Monitor gates\nand rollback", "backgroundColor": "#fff4d6" },
+    { "type": "arrow", "from": "proposal", "to": "evidence" },
+    { "type": "arrow", "from": "evidence", "to": "rollback" },
+    { "type": "arrow", "from": "rollback", "to": "approval" },
+    { "type": "arrow", "from": "approval", "to": "complete" },
+    { "type": "arrow", "from": "complete", "to": "canary", "text": "yes" },
+    { "type": "arrow", "from": "complete", "to": "deny", "text": "no" },
+    { "type": "arrow", "from": "canary", "to": "monitor" },
+    { "type": "arrow", "from": "monitor", "to": "proposal", "text": "new evidence", "points": [[0,0], [0,-110], [-1850,-110], [-1850,96]] }
+  ]
+}
