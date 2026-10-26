@@ -17,7 +17,7 @@ The labs also teach hill climbing as an engineering discipline. Long-horizon age
 An interactive 15-slide tutorial presentation is available for instructors, students, and practitioners:
 - **Interactive Slide Deck:** [Hands-On Harness Engineering Tutorial Slides](https://kenhuangus.github.io/harness-engineering-tutorial-slides/)
 - **Slide Deck Source Repository:** [github.com/kenhuangus/harness-engineering-tutorial-slides](https://github.com/kenhuangus/harness-engineering-tutorial-slides)
-- **Master Book TOC (Google Doc):** [Harness Engineering Chapter Index](https://docs.google.com/document/d/1EtLyxS9EH0MR3WxBwG9lWkU40Lpqr4k4CKhqROGugXo/edit?tab=t.0)
+- **Book Reference:** [Harness Engineering (Kindle)](https://www.amazon.com/dp/B0HF3F86YM)
 - **Coding-Agent Environment Reference:** [packt-harness Slides](https://kenhuangus.github.io/packt-harness/slides.html#1)
 
 ## Quick Start
