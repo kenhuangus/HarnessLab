@@ -22,7 +22,6 @@ The public CLI contract is:
 python -m harnesslab.cli list
 python -m harnesslab.cli run ch01
 python -m harnesslab.cli run all
-python scripts/capture_lab_results.py ch07
 harnesslab run ch07 --json
 ```
 

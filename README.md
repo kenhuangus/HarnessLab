@@ -23,8 +23,6 @@ python -m pip install -e .
 python -m harnesslab.cli list
 python -m harnesslab.cli run ch07 --json
 python -m harnesslab.cli run all
-python scripts/capture_lab_results.py
-python scripts/qa.py
 ```
 
 The installed console command is also available:
@@ -36,7 +34,7 @@ harnesslab run all
 
 Every chapter runner returns a `LabResult` with `chapter`, `title`, `passed`, `score`, `summary`, `decisions`, and `artifacts`. The decisions are the teaching surface. They show where the harness allowed low-risk work, denied an unsafe route, escalated an action for human approval, warned about drift, quarantined hostile context, or preserved evidence for replay. The artifacts show the state that would matter in production: a delegation chain, checkpoint, memory ledger entry, trace envelope, queue state, lineage record, or compliance hash.
 
-Each chapter also stores an actual captured run under `chapters/chXX/LabResult/`. Those folders contain the parsed `result.json`, raw `stdout.txt`, raw `stderr.txt`, and a short README so instructors can compare expected evidence with a fresh local run. Use `python scripts/capture_lab_results.py` to refresh all ten chapters, or pass chapter keys such as `ch03 ch04` to refresh only part of the course.
+Each chapter also stores an actual captured run under `chapters/chXX/LabResult/`. Those folders contain the parsed `result.json`, raw `stdout.txt`, raw `stderr.txt`, and a short README so instructors can compare expected evidence with a fresh local run. Each captured `LabResult/` folder is committed with the chapter so instructors can compare expected evidence with a fresh local run.
 
 ## Chapter Map
 
@@ -82,7 +80,7 @@ When extending the labs, pay attention to what happens at pause and resume. Cred
 
 ## Quality Gates
 
-The repository includes tests and a QA script because the labs are part of a book project, not disposable demos. `python -m unittest discover -s tests` verifies the core controls and registered lab execution. `python scripts/qa.py` runs the tests, checks that every README is long enough for teaching, rejects repeated major headings, rejects duplicated long paragraphs inside or across README files, and validates every saved `LabResult/` artifact. GitHub Actions runs the same gates across supported Python versions.
+The repository includes tests and a QA script because the labs are part of a book project, not disposable demos. `python -m unittest discover -s tests` verifies the core controls and registered lab execution. `python -m unittest discover -s tests` verifies the core controls and registered lab execution. GitHub Actions runs unit tests and executes every chapter lab across supported Python versions.
 
 The quality bar is intentionally practical. A chapter is not complete because it prints JSON. It must show a success path and a bounded unsafe path. It must return deterministic artifacts. It must be readable without external services. It must teach the chapter's pattern rather than merely naming it. It must avoid repeated filler text, because repeated filler hides weak thinking and makes the course material harder to trust.
 
@@ -92,4 +90,4 @@ The repository has three layers. The first layer is `harnesslab/`, which contain
 
 The second layer is `chapters/`. Each chapter folder contains its own `scenario.py`, `run.py`, README, and `LabResult/` folder. The scenario implements the chapter's executable teaching case. The runner keeps the direct module command simple. The README explains the security pattern, the failure mode, the long-running-agent concern, and the interpretation of the returned evidence. The `LabResult/` folder preserves a real run as JSON plus raw command output. Chapter folders should remain independent teaching modules; a student should be able to study Chapter 4 intent contracts without needing to understand every detail of Chapter 9 fleet coordination.
 
-The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `scripts/qa.py` adds publication-oriented checks that normal unit tests miss, including README length and duplication checks. `.github/workflows/ci.yml` runs the same gates across supported Python versions. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.
+The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `.github/workflows/ci.yml` runs unit tests and executes every chapter lab across supported Python versions. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.

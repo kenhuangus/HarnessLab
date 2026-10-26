@@ -15,3 +15,5 @@ venv/
 .cursor/
 run-output/
 
+sample_chapters/
+scripts/
