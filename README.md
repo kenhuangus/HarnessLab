@@ -12,6 +12,14 @@ HarnessLab teaches secure harness engineering by making every control concrete. 
 
 The labs also teach hill climbing as an engineering discipline. Long-horizon agents rarely move in a straight line from prompt to answer. They search locally over plans, tool calls, code changes, context, memory, evidence, evaluator feedback, and recovery states. That search creates value when the harness makes it bounded, observable, reversible, and evidence-driven. The same search creates risk when authority expands silently, when low-trust context becomes durable memory, when traces are too thin to explain a decision, or when a subagent acts under another agent's broad credentials. HarnessLab makes that tension visible in code.
 
+## Tutorial Slides & Course Material
+
+An interactive 15-slide tutorial presentation is available for instructors, students, and practitioners:
+- **Interactive Slide Deck:** [Hands-On Harness Engineering Tutorial Slides](https://kenhuangus.github.io/harness-engineering-tutorial-slides/)
+- **Slide Deck Source Repository:** [github.com/kenhuangus/harness-engineering-tutorial-slides](https://github.com/kenhuangus/harness-engineering-tutorial-slides)
+- **Master Book TOC (Google Doc):** [Harness Engineering Chapter Index](https://docs.google.com/document/d/1EtLyxS9EH0MR3WxBwG9lWkU40Lpqr4k4CKhqROGugXo/edit?tab=t.0)
+- **Coding-Agent Environment Reference:** [packt-harness Slides](https://kenhuangus.github.io/packt-harness/slides.html#1)
+
 ## Quick Start
 
 Use Python 3.11 or later.
