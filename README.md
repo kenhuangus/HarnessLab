@@ -79,6 +79,31 @@ For practitioner workshops, treat HarnessLab as a tabletop-to-code bridge. A sec
 
 The repository is also useful for design reviews. Pick one chapter, run the lab, and map every decision to an internal system. If the internal platform lacks a corresponding component, decide whether the gap belongs in the model gateway, tool gateway, workflow engine, identity plane, memory service, trace backend, CI pipeline, or governance layer. Then ask what evidence would convince a reviewer that the control worked. The goal is not to copy the toy implementation. The goal is to identify the production boundary that needs an explicit contract.
 
+## Enterprise Platform Mapping
+
+HarnessLab uses dependency-free standard library primitives to ensure universal accessibility in educational settings. When implementing these patterns in production enterprise environments, map each lab control to enterprise infrastructure:
+
+| HarnessLab Primitive | Control Plane Responsibility | Enterprise Production Analogues |
+|---|---|---|
+| `CredentialBroker` | Task-scoped identity, audience-bound tokens, and parent-child delegation chains | SPIFFE/SPIRE workload identities, OAuth2 audience tokens, AWS IAM Roles Anywhere, HashiCorp Vault agent tokens |
+| `CapabilityBudget` | Graduated autonomy ceilings, token spend limits, and non-waivable operational controls | API Gateway rate limiters, Envoy token buckets, AWS Bedrock service quotas, FinOps spend alert policies |
+| `IntentContract` | Purpose-bound authorization, semantic drift detection, and transparent call rewriting | OPA/Rego purpose policies, Cedar authorization rules, Langfuse prompt version contracts, API gateway query sanitizers |
+| `ContextFirewall` | Trust tier classification, indirect prompt injection containment, and lethal-trifecta blocks | NeMo Guardrails, AWS Bedrock Guardrails, Azure AI Content Safety, Llama Guard, Lakera Gandalf filters |
+| `MemoryFirewall` | State write-gates, tenant-partitioned ledgers, TTL expiration, and tombstone forgetting | PostgreSQL Row-Level Security (RLS), Redis with TTL + immutable tombstone audit tables, Mem0 / Zep tenant partitions |
+| `Tracer` & `EvidenceEnvelope` | PII span redaction, cryptographic SHA-256 evidence sealing, and replay bundles | OpenTelemetry (OTel) collectors, Jaeger trace streams, Sigstore artifact signing, Langfuse/Arize evaluation suites |
+| `RuntimeController` | Real-time intervention (pause/kill), temporary policy overlays, and compensation rollback | Temporal.io workflow signals, AWS Step Functions compensation sagas, Kubernetes pod lifecycle hooks |
+| `FleetCoordinator` | Tenant bulkheads, priority queues, back-pressure delays, and idempotency ledgers | RabbitMQ/Kafka partitioned queues, Redis distributed locks, Celery task de-duplication, Envoy circuit breakers |
+| `DataGovernanceEngine` | Data classification routing, geographic residency enforcement, and verifiable erasure | Microsoft Purview, Immuta, Privacera, Presidio DLP proxies, AWS Macie, HashiCorp boundary egress policies |
+
+## Student Learning Path
+
+To obtain maximum instructional value from this course, students and practitioners should follow a four-tier learning trajectory:
+
+1. **Foundational Execution (Run & Inspect):** Run each chapter via `python -m harnesslab.cli run chXX --json`. Inspect the returned `decisions` array. Map which decisions were allowed, which were blocked, and which required human escalation.
+2. **Forensic Evidence Verification:** Open `chapters/chXX/LabResult/result.json`. Compare your fresh local run against the pre-captured baseline. Identify the exact cryptographic hash, quarantine finding, or tombstone that serves as audit evidence.
+3. **Failure Injection & Edge Testing:** Modify `chapters/chXX/scenario.py` with one realistic failure scenario (for example, attempting to call an unapproved database tool in Chapter 1, exceeding token budgets in Chapter 2, forging an audience token in Chapter 3, or sending EU healthcare records to a US endpoint in Chapter 10). Re-run the CLI and verify that the harness halts or sanitizes the operation.
+4. **Capstone Production Synthesis:** Synthesize all ten control patterns into a production multi-agent specification for your own organization. Identify where your current architecture relies solely on prompt compliance rather than deterministic control plane boundaries.
+
 ## Long-Running Agents
 
 Long-running agents are the reason this repository emphasizes state. A short chatbot can fail in a single response. A long-horizon agent can fail because it resumes with stale context, renews credentials incorrectly, promotes unsafe memory, loses a trace boundary, retries a non-idempotent action, or carries a data label into the wrong region. Each chapter therefore includes a long-running-agent angle, and each lab includes at least one artifact that could survive beyond a single model call: a checkpoint, ledger entry, delegation chain, trace envelope, queue state, policy overlay, or lineage record.
