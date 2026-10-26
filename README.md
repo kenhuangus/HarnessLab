@@ -1,8 +1,12 @@
 # **HarnessLab**
 
-HarnessLab is the private companion lab repository for **Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems**. The book argues that the decisive artifact in production agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is the harness: the control plane that mediates what agents may know, remember, decide, delegate, execute, observe, resume, and improve. This repository turns that argument into runnable code. Each chapter has an executable scenario, a teaching README, and a deterministic result object that records what the harness allowed, blocked, escalated, or preserved as evidence.
+HarnessLab is the public companion lab repository for **[Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems](https://www.amazon.com/dp/B0HF3F86YM)** by Ken Huang.
 
-The repository is private while the book is in development. It is intended for author review, sample-chapter work, classroom pilots, and controlled workshops before publication. The labs are deliberately dependency-free so that a student can run them with a normal Python installation and no cloud account, no paid model API, no live secrets, and no vendor-specific setup. That constraint is important. A production harness may integrate identity providers, model gateways, workflow engines, observability backends, vaults, DLP services, policy engines, sandboxes, CI systems, and ticketing platforms. HarnessLab keeps the first learning surface small enough to inspect while preserving the control-plane shape that those production systems need.
+**Repository:** https://github.com/kenhuangus/HarnessLab
+
+The book argues that the decisive artifact in production agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is the harness: the control plane that mediates what agents may know, remember, decide, delegate, execute, observe, resume, and improve. This repository turns that argument into runnable code. Each chapter has an executable scenario, a teaching README, and a deterministic result object that records what the harness allowed, blocked, escalated, or preserved as evidence.
+
+The labs are deliberately dependency-free so that a student can run them with a normal Python installation and no cloud account, no paid model API, no live secrets, and no vendor-specific setup. That constraint is important. A production harness may integrate identity providers, model gateways, workflow engines, observability backends, vaults, DLP services, policy engines, sandboxes, CI systems, and ticketing platforms. HarnessLab keeps the first learning surface small enough to inspect while preserving the control-plane shape that those production systems need.
 
 ## Purpose
 
@@ -15,6 +19,8 @@ The labs also teach hill climbing as an engineering discipline. Long-horizon age
 Use Python 3.11 or later.
 
 ```bash
+git clone https://github.com/kenhuangus/HarnessLab.git
+cd HarnessLab
 python -m pip install -e .
 python -m harnesslab.cli list
 python -m harnesslab.cli run ch07 --json
@@ -36,7 +42,9 @@ Each chapter also stores an actual captured run under `chapters/chXX/LabResult/`
 
 ## Chapter Map
 
-Chapter 1, **Hill Climbing and the Secure Harness: Design Patterns for Local Search in Agentic Systems**, introduces the secure harness as the reference architecture for controlled agentic search. The lab starts with an unsafe shared-tool swarm and maps it to a control and evidence matrix.
+Titles match the published Kindle edition.
+
+Chapter 1, **Harness as the Control Plane for Long-Horizon Multi-Agent Systems**, introduces the secure harness as the reference architecture for controlled agentic search. The lab starts with an unsafe shared-tool swarm and maps it to a control and evidence matrix.
 
 Chapter 2, **Autonomy: Graduated Control and Human Oversight**, treats autonomy as a ladder instead of a switch. The lab demonstrates capability budgets, approval queues, non-waivable controls, authority expiry, renewal, and rollback hooks.
 
@@ -44,11 +52,11 @@ Chapter 3, **Identity: Per-Agent Identity and Delegation Chains**, replaces shar
 
 Chapter 4, **Intent: Contracts, Drift Detection, and Authorization by Purpose**, treats declared purpose as an authorization boundary. The lab checks tool scope, data scope, risk, evidence, stale goals, safe rewriting, and purpose-bound reauthorization.
 
-Chapter 5, **Context: Trust Tiers, Provenance, and Poisoning Containment**, treats context as both information and authority. The lab releases only trusted and fresh context, quarantines external instructions, blocks lethal-trifecta egress, and preserves quarantine evidence.
+Chapter 5, **Context: Trust Tiers, Provenance, and Context-Poisoning Containment**, treats context as both information and authority. The lab releases only trusted and fresh context, quarantines external instructions, blocks lethal-trifecta egress, and preserves quarantine evidence.
 
 Chapter 6, **Memory: State Firewall, Ledger, and Forgetting**, treats memory as future behavior. The lab gates memory writes, records state in a ledger, promotes safe handoffs, isolates tenants, expires records, and tombstones poisoned memory.
 
-Chapter 7, **Observability: Traces, Evals, and Hill-Climbing Evidence**, turns traces into the evidentiary layer for improvement. The lab emits redacted spans, hashes artifacts, builds replay bundles, detects benchmark regression, and governs recursive improvement.
+Chapter 7, **Observability, Evals, and Hill-Climbing Evidence**, turns traces into the evidentiary layer for improvement. The lab emits redacted spans, hashes artifacts, builds replay bundles, detects benchmark regression, and governs recursive improvement.
 
 Chapter 8, **Runtime Steering: Intervention, Policy Injection, and Safe Rollback**, shows how to steer a run after execution begins. The lab observes, warns, pauses, blocks, kills, quarantines, recovers, replays, compensates, and expires bounded policy overlays.
 
@@ -86,7 +94,7 @@ The repository has three layers. The first layer is `harnesslab/`, which contain
 
 The second layer is `chapters/`. Each chapter folder contains its own `scenario.py`, `run.py`, README, and `LabResult/` folder. The scenario implements the chapter's executable teaching case. The runner keeps the direct module command simple. The README explains the security pattern, the failure mode, the long-running-agent concern, and the interpretation of the returned evidence. The `LabResult/` folder preserves a real run as JSON plus raw command output. Chapter folders should remain independent teaching modules; a student should be able to study Chapter 4 intent contracts without needing to understand every detail of Chapter 9 fleet coordination.
 
-The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `scripts/qa.py` adds publication-oriented checks that normal unit tests miss, including README length and duplication checks. `.github/workflows/ci.yml` runs the same gates on GitHub. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.
+The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `scripts/qa.py` adds publication-oriented checks that normal unit tests miss, including README length and duplication checks. `.github/workflows/ci.yml` runs the same gates across supported Python versions. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.
 
 ## Extension Path
 

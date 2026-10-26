@@ -250,7 +250,7 @@ def run() -> LabResult:
 
     return LabResult(
         chapter="ch05",
-        title="Context: Trust Tiers, Provenance, and Poisoning Containment",
+        title="Context: Trust Tiers, Provenance, and Context-Poisoning Containment",
         passed=all(expected),
         score=score,
         summary=(

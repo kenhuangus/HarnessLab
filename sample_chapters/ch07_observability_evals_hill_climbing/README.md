@@ -1,6 +1,6 @@
 # **Sample Chapter Package: Chapter 7**
 
-This folder contains the drafted sample chapter for **Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems**.
+This folder contains a drafted sample chapter for **Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems**.
 
 Main manuscript:
 

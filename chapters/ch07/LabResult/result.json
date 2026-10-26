@@ -544,5 +544,5 @@
   "passed": true,
   "score": 1.0,
   "summary": "Observed a risky agent action with redacted traces, sealed evidence, replayable artifacts, benchmark regression proof, a hill-climbing eval loop, and governed recursive self-improvement.",
-  "title": "Observability: Traces, Evals, and Hill-Climbing Evidence"
+  "title": "Observability, Evals, and Hill-Climbing Evidence"
 }

@@ -27,7 +27,7 @@ from harnesslab.core import (
 
 
 CHAPTER = "ch07"
-TITLE = "Observability: Traces, Evals, and Hill-Climbing Evidence"
+TITLE = "Observability, Evals, and Hill-Climbing Evidence"
 RUN_ID = "ch07-observability-training-run"
 ACTOR = "observer-agent"
 POLICY_VERSION = "observability-policy-v1"

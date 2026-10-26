@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "harnesslab"
 version = "0.1.0"
-description = "Runnable companion labs for Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems."
+description = "Runnable companion labs for Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [

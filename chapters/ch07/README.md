@@ -1,4 +1,4 @@
-# **Chapter 7: Observability: Traces, Evals, and Hill-Climbing Evidence**
+# **Chapter 7: Observability, Evals, and Hill-Climbing Evidence**
 
 Observability is the part of the secure harness that lets people understand
 what a long-running agent did, why it did it, what evidence supported the

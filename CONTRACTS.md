@@ -1,6 +1,6 @@
 # HarnessLab Locked Contracts
 
-HarnessLab is the companion GitHub project for *Hill Climbing: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems*. The repository is intentionally runnable without cloud credentials or paid model APIs so instructors can use it in classrooms, workshops, and CI environments.
+HarnessLab is the companion GitHub project for *Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems* (https://github.com/kenhuangus/HarnessLab). The repository is intentionally runnable without cloud credentials or paid model APIs so instructors can use it in classrooms, workshops, and CI environments.
 
 These contracts are locked for chapter implementations:
 

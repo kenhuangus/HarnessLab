@@ -16,13 +16,13 @@ class Chapter:
 
 
 CHAPTERS: tuple[Chapter, ...] = (
-    Chapter("ch01", "Hill Climbing and the Secure Harness", "chapters.ch01.scenario"),
+    Chapter("ch01", "Harness as the Control Plane for Long-Horizon Multi-Agent Systems", "chapters.ch01.scenario"),
     Chapter("ch02", "Autonomy: Graduated Control and Human Oversight", "chapters.ch02.scenario"),
     Chapter("ch03", "Identity: Per-Agent Identity and Delegation Chains", "chapters.ch03.scenario"),
     Chapter("ch04", "Intent: Contracts, Drift Detection, and Authorization by Purpose", "chapters.ch04.scenario"),
-    Chapter("ch05", "Context: Trust Tiers, Provenance, and Poisoning Containment", "chapters.ch05.scenario"),
+    Chapter("ch05", "Context: Trust Tiers, Provenance, and Context-Poisoning Containment", "chapters.ch05.scenario"),
     Chapter("ch06", "Memory: State Firewall, Ledger, and Forgetting", "chapters.ch06.scenario"),
-    Chapter("ch07", "Observability: Traces, Evals, and Hill-Climbing Evidence", "chapters.ch07.scenario"),
+    Chapter("ch07", "Observability, Evals, and Hill-Climbing Evidence", "chapters.ch07.scenario"),
     Chapter("ch08", "Runtime Steering: Intervention, Policy Injection, and Safe Rollback", "chapters.ch08.scenario"),
     Chapter("ch09", "Scalability: Fleet Coordination Without Cascading Failure", "chapters.ch09.scenario"),
     Chapter("ch10", "Data Governance: Classification-Aware Tools, Egress, and Compliance", "chapters.ch10.scenario"),

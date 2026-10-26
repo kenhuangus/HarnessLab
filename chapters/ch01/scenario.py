@@ -29,7 +29,7 @@ from harnesslab.core import (
 
 
 CHAPTER = "ch01"
-TITLE = "Hill Climbing and the Secure Harness"
+TITLE = "Harness as the Control Plane for Long-Horizon Multi-Agent Systems"
 POLICY_VERSION = "chapter-01-policy-v1"
 
 

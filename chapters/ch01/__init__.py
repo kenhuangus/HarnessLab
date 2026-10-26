@@ -1,4 +1,4 @@
-"""Chapter 1: Hill Climbing and the Secure Harness."""
+"""Chapter 1: Harness as the Control Plane for Long-Horizon Multi-Agent Systems."""
 
 from .scenario import run
 

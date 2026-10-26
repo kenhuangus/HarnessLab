@@ -1,4 +1,4 @@
-# **Chapter 5: Context: Trust Tiers, Provenance, and Poisoning Containment**
+# **Chapter 5: Context: Trust Tiers, Provenance, and Context-Poisoning Containment**
 
 Context is the part of an agent system that feels deceptively harmless. It is
 "just information" until it changes what the agent believes, which tools it

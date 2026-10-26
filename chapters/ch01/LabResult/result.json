@@ -322,5 +322,5 @@
   "passed": true,
   "score": 0.98,
   "summary": "Mapped an unsafe shared-tool agent project to a secure harness, blocked or escalated unsafe paths, created a checkpoint before privileged work, and showed a governed hill-climbing path.",
-  "title": "Hill Climbing and the Secure Harness"
+  "title": "Harness as the Control Plane for Long-Horizon Multi-Agent Systems"
 }

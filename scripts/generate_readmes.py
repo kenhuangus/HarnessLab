@@ -13,7 +13,7 @@ MIN_WORDS = 2100
 
 CHAPTERS = {
     "ch01": {
-        "title": "Hill Climbing and the Secure Harness",
+        "title": "Harness as the Control Plane for Long-Horizon Multi-Agent Systems",
         "pattern": "secure harness reference architecture",
         "failure": "a productive but unsafe agent fleet that can plan, call tools, delegate work, and change state without a durable control plane",
         "controls": ["control and evidence matrix", "tool gateway", "checkpoint", "policy decision point", "trace evidence", "secure-by-design defaults"],
@@ -41,7 +41,7 @@ CHAPTERS = {
         "long": "intent renewal, stale-goal detection, drift checks at resumption, and reauthorization when a run changes direction",
     },
     "ch05": {
-        "title": "Context: Trust Tiers, Provenance, and Poisoning Containment",
+        "title": "Context: Trust Tiers, Provenance, and Context-Poisoning Containment",
         "pattern": "trust-tiered context firewall",
         "failure": "external instructions, private data, and tool access mixed into one prompt without provenance or containment",
         "controls": ["trust tier", "provenance", "quarantine", "lethal-trifecta detection", "profile policy", "freshness check"],
@@ -55,7 +55,7 @@ CHAPTERS = {
         "long": "durable memory governance, state handoffs, retention, rollback, and recursive improvement without memory poisoning",
     },
     "ch07": {
-        "title": "Observability: Traces, Evals, and Hill-Climbing Evidence",
+        "title": "Observability, Evals, and Hill-Climbing Evidence",
         "pattern": "trace-to-eval hill-climbing loop",
         "failure": "a team improving an agent by anecdote, unable to replay why a change worked, failed, or created a new risk",
         "controls": ["decision trace", "evidence envelope", "artifact hash", "redaction", "replay bundle", "regression eval"],
@@ -97,8 +97,8 @@ def root_readme() -> str:
     sections = [
         "# **HarnessLab**",
         """
-        HarnessLab is the runnable companion project for **Hill Climbing: Design Patterns for Securing
-        Long-Horizon Multi-Agent AI Systems**. The book argues that the decisive artifact in production
+        HarnessLab is the public companion project for **Harness Engineering: Design Patterns for Securing
+        Long-Horizon Multi-Agent AI Systems** (https://github.com/kenhuangus/HarnessLab). The book argues that the decisive artifact in production
         agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is
         the harness: the control plane that mediates what agents may know, remember, decide, delegate,
         execute, observe, resume, and improve. This repository gives instructors and practitioners a
