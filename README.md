@@ -1,8 +1,6 @@
 # **HarnessLab**
 
-HarnessLab is the public companion lab repository for **[Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems](https://www.amazon.com/dp/B0HF3F86YM)** by Ken Huang.
-
-**Repository:** https://github.com/kenhuangus/HarnessLab
+HarnessLab is the public companion lab repository for **Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems** by Ken Huang.
 
 The book argues that the decisive artifact in production agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is the harness: the control plane that mediates what agents may know, remember, decide, delegate, execute, observe, resume, and improve. This repository turns that argument into runnable code. Each chapter has an executable scenario, a teaching README, and a deterministic result object that records what the harness allowed, blocked, escalated, or preserved as evidence.
 
@@ -95,9 +93,3 @@ The repository has three layers. The first layer is `harnesslab/`, which contain
 The second layer is `chapters/`. Each chapter folder contains its own `scenario.py`, `run.py`, README, and `LabResult/` folder. The scenario implements the chapter's executable teaching case. The runner keeps the direct module command simple. The README explains the security pattern, the failure mode, the long-running-agent concern, and the interpretation of the returned evidence. The `LabResult/` folder preserves a real run as JSON plus raw command output. Chapter folders should remain independent teaching modules; a student should be able to study Chapter 4 intent contracts without needing to understand every detail of Chapter 9 fleet coordination.
 
 The third layer is the quality and release layer. `tests/` verifies the core contract and confirms that every registered lab runs. `scripts/qa.py` adds publication-oriented checks that normal unit tests miss, including README length and duplication checks. `.github/workflows/ci.yml` runs the same gates across supported Python versions. `CONTRACTS.md` records the interface rules that chapter implementations must preserve. `SECURITY.md` clarifies that the project contains simulated unsafe paths for teaching, while still treating framework bugs, misleading controls, or accidental leakage as real security issues.
-
-## Extension Path
-
-HarnessLab can be extended in several directions after the manuscript examples stabilize. A course can assign teams to replace the deterministic simulations with real integrations: OpenTelemetry for traces, OPA or Cedar for policy, SPIFFE/SPIRE for workload identity, a vector store for memory and retrieval, a workflow engine for durable orchestration, or a sandboxed code runner for tool execution. Those integrations should preserve the locked contracts instead of hiding the concepts behind infrastructure. The learning goal remains the same: every consequential agent step should be authorized by intent, constrained by identity, informed by trusted context, recorded as evidence, governed by data policy, and reversible or interruptible when risk changes.
-
-For a ten-week module, assign one chapter folder per week. For a semester course, pair each lab with a design review and an implementation extension. For an executive or practitioner workshop, select Chapters 1, 5, 7, 8, and 10 as the core path because they cover architecture, context, evidence, runtime control, and governance. For a secure software engineering course, emphasize Chapters 2, 3, 4, and 9 because they map cleanly to least privilege, authorization, approvals, and reliability engineering. For an AI security course, treat all ten chapters as a pattern language and ask students to build a CSA MAESTRO-style threat model against each lab.
