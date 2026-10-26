@@ -2,6 +2,7 @@
 
 Companion hands-on lab manual for **Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems** by Ken Huang, CISSP.
 
+- **Interactive Course Slides (GitHub Pages):** [https://kenhuangus.github.io/harness-engineering-tutorial-slides/](https://kenhuangus.github.io/harness-engineering-tutorial-slides/)
 - **Master Syllabus:** [`SYLLABUS.md`](file:///C:/Users/kenhu/HarnessLab/SYLLABUS.md)
 - **Quick Reference Sheet:** [`QUICK_REFERENCE.md`](file:///C:/Users/kenhu/HarnessLab/QUICK_REFERENCE.md)
 - **Architecture Decision Records:** [`adr/TEMPLATE.md`](file:///C:/Users/kenhu/HarnessLab/adr/TEMPLATE.md) and [`adr/ADR-001-deterministic-control-plane.md`](file:///C:/Users/kenhu/HarnessLab/adr/ADR-001-deterministic-control-plane.md)

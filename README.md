@@ -1,5 +1,8 @@
 # **HarnessLab**
 
+> 🌐 **Interactive Course Slide Deck (GitHub Pages):**  
+> **[https://kenhuangus.github.io/harness-engineering-tutorial-slides/](https://kenhuangus.github.io/harness-engineering-tutorial-slides/)**
+
 HarnessLab is the public companion lab repository for **Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems** by Ken Huang.
 
 The book argues that the decisive artifact in production agentic AI is not a clever prompt, a single model, or a single guardrail. The decisive artifact is the harness: the control plane that mediates what agents may know, remember, decide, delegate, execute, observe, resume, and improve. This repository turns that argument into runnable code. Each chapter has an executable scenario, a teaching README, and a deterministic result object that records what the harness allowed, blocked, escalated, or preserved as evidence.
