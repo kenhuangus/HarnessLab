@@ -2,6 +2,12 @@
 
 Companion hands-on lab manual for **Harness Engineering: Design Patterns for Securing Long-Horizon Multi-Agent AI Systems** by Ken Huang, CISSP.
 
+- **Master Syllabus:** [`SYLLABUS.md`](file:///C:/Users/kenhu/HarnessLab/SYLLABUS.md)
+- **Quick Reference Sheet:** [`QUICK_REFERENCE.md`](file:///C:/Users/kenhu/HarnessLab/QUICK_REFERENCE.md)
+- **Architecture Decision Records:** [`adr/TEMPLATE.md`](file:///C:/Users/kenhu/HarnessLab/adr/TEMPLATE.md) and [`adr/ADR-001-deterministic-control-plane.md`](file:///C:/Users/kenhu/HarnessLab/adr/ADR-001-deterministic-control-plane.md)
+- **Capstone Fleet Implementation:** [`capstone/remediation_fleet.py`](file:///C:/Users/kenhu/HarnessLab/capstone/remediation_fleet.py)
+- **Automated Verification CLI:** `python -m harnesslab.cli verify` (or `harnesslab verify`)
+
 ---
 
 ## 1. Course Architecture & Prerequisites
@@ -157,6 +163,15 @@ Design and implement a multi-agent **Autonomous Security Remediation Fleet** inc
   5. **Human Approval Gate:** The deploy agent requires an explicit cryptographic approval token before applying changes to production.
   6. **Verifiable Audit Envelope:** Emits a sealed evidence envelope containing SHA-256 digests of the bug report, git diff, test run, and deploy receipt.
 
+### Runnable Reference Implementation
+- **Source File:** `capstone/remediation_fleet.py`
+- **Unit Test Suite:** `capstone/test_capstone.py`
+- **Execution Command:**
+  ```bash
+  python -m harnesslab.cli capstone
+  python -m unittest discover -s capstone -p "test_*.py"
+  ```
+
 ---
 
 ## 5. Production Readiness Certification Checklist
@@ -168,3 +183,10 @@ Before granting real-world production autonomy to an agent fleet, verify that th
 - [ ] **Gate 3 (Context & Quarantine):** External data is classified by trust tier; injection attempts are quarantined into tamper-evident ledgers.
 - [ ] **Gate 4 (State & Rollback):** All memory writes are gated; reversible writes have tested compensation/rollback handlers; tombstone records are immutable.
 - [ ] **Gate 5 (Governance & Evidence):** Telemetry is PII-redacted; data residency is enforced at egress; erasure requests are provable across memory and traces.
+
+### Automated Student Certification
+Run the automated verification suite to validate all 10 chapter labs, the 5 safety invariants, and the Capstone Fleet in a single pass:
+```bash
+python -m harnesslab.cli verify
+```
+Upon completion, the CLI outputs a cryptographically sealed SHA-256 completion receipt.

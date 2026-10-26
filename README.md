@@ -104,6 +104,18 @@ To obtain maximum instructional value from this course, students and practitione
 3. **Failure Injection & Edge Testing:** Modify `chapters/chXX/scenario.py` with one realistic failure scenario (for example, attempting to call an unapproved database tool in Chapter 1, exceeding token budgets in Chapter 2, forging an audience token in Chapter 3, or sending EU healthcare records to a US endpoint in Chapter 10). Re-run the CLI and verify that the harness halts or sanitizes the operation.
 4. **Capstone Production Synthesis:** Synthesize all ten control patterns into a production multi-agent specification for your own organization. Identify where your current architecture relies solely on prompt compliance rather than deterministic control plane boundaries.
 
+## Student and Instructor Course Resources
+
+The repository includes a comprehensive curriculum suite to support individual self-study, corporate engineering bootcamps, and university graduate seminars:
+
+- **Master Syllabus (`SYLLABUS.md`):** Complete course curriculum with three delivery tracks (4-Hour Executive Briefing, 2-Day Engineering Bootcamp, 4-Week University Seminar), learning outcomes, Socratic discussion prompts, and the 5-step teaching protocol.
+- **Practitioner Lab Workbook (`WORKBOOK.md`):** Detailed laboratory worksheets for all 10 chapters, covering observation exercises, failure-injection experiments, forensic checkpoint analysis, and the 5-Gate Production Readiness Certification checklist.
+- **Quick Reference Manual (`QUICK_REFERENCE.md`):** One-page desk reference covering the 5 policy decisions, trust tiers, data classifications, action risks, the 7-step runtime steering lifecycle, and CLI cheatsheet.
+- **Automated Verification CLI (`harnesslab verify`):** Built-in CLI diagnostic command (`python -m harnesslab.cli verify`) that tests local runtime environment, executes all 10 chapter scenarios, validates 5 core safety invariants, evaluates the capstone fleet, and outputs a tamper-evident SHA-256 completion certificate.
+- **Architecture Decision Records (`adr/`):** Enterprise ADR template (`adr/TEMPLATE.md`) and a canonical worked example (`adr/ADR-001-deterministic-control-plane.md`) explaining why deterministic code gateways are chosen over probabilistic prompt judges.
+- **Enterprise Capstone Starter (`capstone/`):** Fully runnable multi-agent Autonomous Security Remediation Fleet (`python -m harnesslab.cli capstone`) and automated test suite (`capstone/test_capstone.py`) demonstrating Triage, Patch, and Deploy agents satisfying all 5 production gates.
+
+
 ## Long-Running Agents
 
 Long-running agents are the reason this repository emphasizes state. A short chatbot can fail in a single response. A long-horizon agent can fail because it resumes with stale context, renews credentials incorrectly, promotes unsafe memory, loses a trace boundary, retries a non-idempotent action, or carries a data label into the wrong region. Each chapter therefore includes a long-running-agent angle, and each lab includes at least one artifact that could survive beyond a single model call: a checkpoint, ledger entry, delegation chain, trace envelope, queue state, policy overlay, or lineage record.

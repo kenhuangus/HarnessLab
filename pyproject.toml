@@ -28,4 +28,4 @@ dependencies = []
 harnesslab = "harnesslab.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["harnesslab*", "chapters*"]
+include = ["harnesslab*", "chapters*", "capstone*"]
